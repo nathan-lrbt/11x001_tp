@@ -96,10 +96,19 @@ void hanoi(int nb_disques, char nom_tour_depart, char nom_tour_arrivee, char nom
     }
 
     // TODO : commenter (ou supprimer) la ligne suivante
-    hanoi_idiot(nb_disques, nom_tour_depart, nom_tour_arrivee, nom_tour_auxiliaire);
+//    hanoi_idiot(nb_disques, nom_tour_depart, nom_tour_arrivee, nom_tour_auxiliaire);
 
     /******************** Votre code ci-dessous ********************/
-    
+  if(nb_disques == 1){
+    afficher_instruction_hanoi(nom_tour_depart, nom_tour_arrivee);
+  }
+  else{
+    hanoi(nb_disques - 1, nom_tour_depart, nom_tour_auxiliaire, nom_tour_arrivee);
+    afficher_instruction_hanoi(nom_tour_depart, nom_tour_arrivee);
+    hanoi(nb_disques - 1, nom_tour_auxiliaire, nom_tour_arrivee, nom_tour_depart);
+  }
+
+
     
     /******************** Votre code ci-dessus *********************/
 }
@@ -311,8 +320,8 @@ int main(void) {
 //    exercice3();
 //    exercice4();
 //    exercice5();
-    exercice6();
-//    exercice7();
+//    exercice6();
+    exercice7();
 //    exercice8();
 //    exercice9();
     
