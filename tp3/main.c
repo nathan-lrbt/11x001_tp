@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 
 /****************************/
 /* Vos fonctions ci-dessous */ 
@@ -7,26 +7,57 @@
 
 
 // EXERCICE 1
-
+float somme(float a, float b){
+  return a + b;
+}
 
 // EXERCICE 2
-
+float puissance(float nombre, int exposant){
+  float result = 1;
+  if(nombre == 0 && exposant == 0) abort();
+  else if(exposant == 0) return 1;
+  else if(nombre == 0) return 0;
+  else{
+    for(int i=1; i <= exposant; i++){
+      result *= nombre;
+    }
+  }
+  return result;
+}
 
 // EXERCICE 4
 
 int restreindre_intervalle_pure(int x, int min, int max) {
     /******************** Votre code ci-dessous ********************/
+    if(x<min) return min;
+    else if(x>max) return max;
+    else return x;
     /******************** Votre code ci-dessus ********************/
 }
 
 void restreindre_intervalle_bord(int *x, int min, int max) {
     /******************** Votre code ci-dessous ********************/
+    if(*x < min) *x = min;
+    else if(*x > max) *x = max;
     /******************** Votre code ci-dessus ********************/
 }
 
 // EXERCICE 5
+void echange(int *a, int *b){
+  int buff = *a;
+  *a = *b;
+  *b = buff;
+}
 
 // EXERCICE 6
+int factorielle(int n){
+  if(n==0) return 1;
+  else return n*factorielle(n-1);
+}
+
+float coefficient_binomial(int k, int n){
+  return (factorielle(n) / (factorielle(k) * factorielle(n-k)));
+}
 
 // EXERCICE 7
 
@@ -93,7 +124,7 @@ void exercice1(void) {
     scanf("%f %f", &a, &b);
     
     // TODO : Décommenter la ligne suivante une fois que la fonction somme est implémentée
-    // c = somme(a, b); 
+    c = somme(a, b); 
     
     printf("%f + %f = %f\n", a, b, c);
 
@@ -110,7 +141,7 @@ void exercice2(void) {
     scanf("%d %d", &nombre, &exposant); 
 
     /******************** Votre code ci-dessous ********************/
-   
+    resultat = puissance(nombre, exposant);  
     /******************** Votre code ci-dessus *********************/
 
     printf("%d^%d = %d\n", nombre, exposant, resultat);
@@ -123,10 +154,26 @@ void exercice3(void) {
     printf("\n\nEXERCICE 3\n\n");
     
     int a = 10;
-    printf("a = %d (adresse : %p) \n", a, &a);
+    printf("a = %d (adresse : %p) \n\n", a, &a);
     
     /******************** Votre code ci-dessous ********************/
-    
+    int *p1, *p2;
+    p1 = &a;
+    printf("a = %d (adresse : %p) \n", a, &a);
+    printf("p1 = %p (adresse : %p) \n", p1, &p1);
+    printf("p2 = %p (adresse : %p) \n\n", p2, &p2);
+    *p1 -= 3;
+    printf("a = %d (adresse : %p) \n", a, &a);
+    printf("p1 = %p (adresse : %p) \n", p1, &p1);
+    printf("p2 = %p (adresse : %p) \n\n", p2, &p2);
+    p2 = p1;
+    printf("a = %d (adresse : %p) \n", a, &a);
+    printf("p1 = %p (adresse : %p) \n", p1, &p1);
+    printf("p2 = %p (adresse : %p) \n\n", p2, &p2);
+    *p2 *= 6;
+    printf("a = %d (adresse : %p) \n", a, &a);
+    printf("p1 = %p (adresse : %p) \n", p1, &p1);
+    printf("p2 = %p (adresse : %p) \n", p2, &p2);
     /******************** Votre code ci-dessus *********************/
 
     return;
@@ -166,7 +213,7 @@ void exercice5(void) {
     printf("Avant l'échange, a = %d et b = %d \n", a, b);
     
     /******************** Votre code ci-dessous ********************/
-
+    echange(&a, &b);
     /******************** Votre code ci-dessus *********************/
 
     printf("Après l'échange, a = %d et b = %d \n", a, b);
@@ -187,7 +234,11 @@ void exercice6(void) {
     scanf("%d", &n);
 
     /******************** Votre code ci-dessous ********************/
-    
+    fact_k = factorielle(k);
+    fact_n = factorielle(n);
+
+    k_parmi_n = coefficient_binomial(k,n);
+
     /******************** Votre code ci-dessus *********************/
 
     printf("%d! = %d\n", k, fact_k);
@@ -255,12 +306,12 @@ int main(void) {
 
     // Astuce : commenter tous les exercices sauf celui en cours pour gagner du temps !
 
-    exercice1();
+//    exercice1();
 //    exercice2();
 //    exercice3();
 //    exercice4();
 //    exercice5();
-//    exercice6();
+    exercice6();
 //    exercice7();
 //    exercice8();
 //    exercice9();
