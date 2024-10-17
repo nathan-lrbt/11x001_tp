@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 /****************************/
 /* Vos fonctions ci-dessous */ 
@@ -115,9 +116,39 @@ void hanoi(int nb_disques, char nom_tour_depart, char nom_tour_arrivee, char nom
 
 // EXERCICE 8
 
+float absolute(float x){
+  if(x<0.0) return(-x);
+  else return(x);
+}
+
+float initialiser_heron(float a){
+  int x = 0;
+  while(x*x != floor(a)){
+    x++;
+  }
+  return x;
+}
+
+float racine_heron(float a, float precision){
+  float x = initialiser_heron(a);
+  while(absolute(x*x-a) > precision){
+    x = (x + a / x) / 2;
+  }
+  return x;
+}
 
 // EXERCICE 9 
 
+double approximer_pi(int nb_points_par_axe){
+  double count = 0;
+  double nb = nb_points_par_axe*nb_points_par_axe;
+  for(int x=0; x<=1*nb_points_par_axe; x++){
+    for(int y=0; y<=1*nb_points_par_axe; y++){
+      if(sqrt(x*x+y*y)<=1*nb_points_par_axe) count++;
+    }
+  }
+  return ((4*count)/nb);
+}
 
 /****************************/
 /* Vos fonctions ci-dessus **/
@@ -286,7 +317,7 @@ void exercice8(void) {
     scanf("%f", &precision);
     
     // TODO : Décommenter la ligne suivante une fois que la fonction ,'racine_heron' est implémentée
-    // x = racine_heron(a, precision);
+    x = racine_heron(a, precision);
 
     printf("Racine carrée de %f = %f\n", a, x);
 
@@ -304,7 +335,7 @@ void exercice9(void) {
     scanf("%d", &nb_points_par_axe);
 
     /******************** Votre code ci-dessous ********************/
-        
+       printf("Pi = %f\n", approximer_pi(nb_points_par_axe)); 
     /******************** Votre code ci-dessus *********************/
 
     return;
@@ -321,8 +352,8 @@ int main(void) {
 //    exercice4();
 //    exercice5();
 //    exercice6();
-    exercice7();
-//    exercice8();
+//    exercice7();
+    exercice8();
 //    exercice9();
     
     return 0;
