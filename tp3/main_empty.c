@@ -8,19 +8,34 @@
 
 // EXERCICE 1
 
+float somme(float a, float b) {
+    return a + b;
+}
 
 // EXERCICE 2
 
+int puissance(int nombre, int exposant) {
+    int resultat = 1;
+    for (int i = 0; i < exposant; i++) {
+        resultat *= nombre;
+    }
+    return resultat;
+}
 
 // EXERCICE 4
 
 int restreindre_intervalle_pure(int x, int min, int max) {
     /******************** Votre code ci-dessous ********************/
+    if (x < min) return min;
+    if (x > max) return max;
+    return x; 
     /******************** Votre code ci-dessus ********************/
 }
 
 void restreindre_intervalle_bord(int *x, int min, int max) {
     /******************** Votre code ci-dessous ********************/
+    if (*x < min) *x = min;
+    if (*x > max) *x = max; 
     /******************** Votre code ci-dessus ********************/
 }
 
@@ -93,7 +108,7 @@ void exercice1(void) {
     scanf("%f %f", &a, &b);
     
     // TODO : Décommenter la ligne suivante une fois que la fonction somme est implémentée
-    // c = somme(a, b); 
+    c = somme(a, b); 
     
     printf("%f + %f = %f\n", a, b, c);
 
@@ -111,6 +126,8 @@ void exercice2(void) {
 
     /******************** Votre code ci-dessous ********************/
    
+    resultat = puissance(nombre, exposant);
+
     /******************** Votre code ci-dessus *********************/
 
     printf("%d^%d = %d\n", nombre, exposant, resultat);
@@ -127,6 +144,21 @@ void exercice3(void) {
     
     /******************** Votre code ci-dessous ********************/
     
+    int *p1, *p2;
+    
+    p1 = &a;
+    *p1 -= 3;
+    
+    printf("a = %d (adresse : %p) \n", a, &a);
+    
+    p2 = p1;
+    *p2 *= 6;    
+
+    printf("a = %d (adresse : %p) \n", a, &a);
+
+    printf("p1 = %p \n", p1);
+    printf("p2 = %p \n", p2);
+
     /******************** Votre code ci-dessus *********************/
 
     return;
