@@ -19,7 +19,11 @@ void exercice1(void) {
     printf("\n\nEXERCICE 1\n\n");
 
     /******************** Votre code ci-dessous ********************/
-
+    int n;
+    printf("Entrer la taille n de la liste :");
+    scanf("$di\n", &n);
+    int liste[n];
+    for(int i; i<n; i++){}
     /******************** Votre code ci-dessus *********************/
 
     return;
